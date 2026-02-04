@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>💎 Cofrinho Familiar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="app">
+  <div class="login-card">
+    <h1>🌴 Cofrinho Familiar</h1>
+    <input type="text" id="usuarioLogin" placeholder="Usuário">
+    <input type="password" id="senhaLogin" placeholder="Senha">
+    <button onclick="fazerLogin()">Entrar</button>
+    <p id="msgLogin"></p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="mainApp" class="app" style="display:none;">
+  <header>
+    <h1>💎 Cofrinho Familiar</h1>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" onclick="trocarAba('inicio')">Início</button>
+    <button class="tab" onclick="trocarAba('graficos')">Gráficos</button>
+    <button class="tab" onclick="trocarAba('cartao')">Cartão Crédito</button>
+    <button class="tab" onclick="trocarAba('debito')">Cartão Débito</button>
+  </div>
+
+  <!-- ABA INICIO -->
+  <section id="inicio" class="aba ativa">
+    <div class="card">
+      <h3>Filtrar por mês</h3>
+      <select id="filtroMes" onchange="aplicarFiltroMes()">
+        <option value="">Todos</option>
+        <option value="01">Janeiro</option>
+        <option value="02">Fevereiro</option>
+        <option value="03">Março</option>
+        <option value="04">Abril</option>
+        <option value="05">Maio</option>
+        <option value="06">Junho</option>
+        <option value="07">Julho</option>
+        <option value="08">Agosto</option>
+        <option value="09">Setembro</option>
+        <option value="10">Outubro</option>
+        <option value="11">Novembro</option>
+        <option value="12">Dezembro</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h3>Saldo</h3>
+      <p id="saldo">R$ 0,00</p>
+      <p id="resumoTexto"></p>
+    </div>
+
+    <div class="card">
+      <h3>Nova movimentação</h3>
+      <input id="descricao" placeholder="Descrição">
+      <input id="valor" type="number" placeholder="Valor">
+      <select id="categoria">
+        <option>Alimentação</option>
+        <option>Transporte</option>
+        <option>Contas</option>
+        <option>Lazer</option>
+        <option>Outros</option>
+      </select>
+      <select id="tipo">
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
+      </select>
+      <button onclick="adicionarMovimentacao()">Adicionar</button>
+    </div>
+
+    <div class="card">
+      <h3>Movimentações</h3>
+      <ul id="lista"></ul>
+    </div>
+  </section>
+
+  <!-- ABA GRAFICOS -->
+  <section id="graficos" class="aba">
+    <div class="card">
+      <h3>Gráfico Mensal</h3>
+      <canvas id="graficoMensal"></canvas>
+    </div>
+    <div class="card">
+      <h3>Gráfico por Categorias</h3>
+      <canvas id="graficoCategorias"></canvas>
+    </div>
+  </section>
+
+  <!-- ABA CARTÃO -->
+  <section id="cartao" class="aba">
+    <div class="card">
+      <h3>Novo gasto no cartão</h3>
+      <input id="descCartao" placeholder="Descrição">
+      <input id="valorCartao" type="number" placeholder="Valor">
+      <select id="quemUsou">
+        <option>Alexandre (Titular)</option>
+        <option>Vitor</option>
+        <option>Ingrid</option>
+        <option>Catia</option>
+      </select>
+      <input type="number" id="parcelasCartao" placeholder="Parcelas (1 se à vista)">
+      <button onclick="adicionarGastoCartao()">Adicionar</button>
+    </div>
+    <div class="card">
+      <h3>Fatura do cartão</h3>
+      <ul id="listaCartao"></ul>
+      <p id="resumoCartao"></p>
+      <canvas id="graficoCartaoPizza"></canvas>
+      <canvas id="graficoCartaoBarra"></canvas>
+    </div>
+  </section>
+
+  <!-- ABA DÉBITO -->
+  <section id="debito" class="aba">
+    <div class="card">
+      <h3>Novo gasto no débito</h3>
+      <input id="descDebito" placeholder="Descrição">
+      <input id="valorDebito" type="number" placeholder="Valor">
+      <select id="quemDebito">
+        <option>Alexandre (Titular)</option>
+        <option>Vitor</option>
+        <option>Ingrid</option>
+        <option>Catia</option>
+      </select>
+      <button onclick="adicionarGastoDebito()">Adicionar</button>
+    </div>
+    <div class="card">
+      <h3>Resumo Débito</h3>
+      <ul id="listaDebito"></ul>
+      <p id="resumoDebito"></p>
+      <canvas id="graficoDebitoPizza"></canvas>
+      <canvas id="graficoDebitoBarra"></canvas>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
